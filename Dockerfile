@@ -20,5 +20,8 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y prosody lua-event lua-zlib lua-dbi-mysql lua-dbi-postgresql lua-dbi-sqlite3 && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Remove SUID programs
+RUN for i in `find / -perm +6000 -type f 2>/dev/null`; do chmod a-s $i; done
+
 USER prosody
 CMD ["/usr/bin/prosodyctl", "start"]
