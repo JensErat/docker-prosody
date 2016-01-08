@@ -16,7 +16,7 @@ VOLUME /var/lib/prosody
 # 5347/tcp: XMPP component
 EXPOSE 5000 5222 5223 5269 5280 5281 5347
 
-ENV PROSODY_VERSION 0.9.8-1~jessie2
+ENV PROSODY_VERSION 0.9.9-1~jessie2
 
 RUN apt-key adv --keyserver pool.sks-keyservers.net --recv-keys 107D65A0A148C237FDF00AB47393D7E674D9DBB5 && \
     echo deb http://packages.prosody.im/debian jessie main >>/etc/apt/sources.list && \
