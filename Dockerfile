@@ -18,7 +18,9 @@ EXPOSE 5000 5222 5223 5269 5280 5281 5347
 
 ENV PROSODY_VERSION 0.9.10-1~jessie1
 
-RUN apt-key adv --keyserver pool.sks-keyservers.net --recv-keys 107D65A0A148C237FDF00AB47393D7E674D9DBB5 && \
+COPY 107D65A0A148C237FDF00AB47393D7E674D9DBB5.gpg /root
+
+RUN apt-key add /root/107D65A0A148C237FDF00AB47393D7E674D9DBB5.gpg && \
     echo deb http://packages.prosody.im/debian jessie main >>/etc/apt/sources.list && \
     apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-suggests prosody=${PROSODY_VERSION} curl lua-sec lua-event lua-zlib lua-ldap lua-dbi-mysql lua-dbi-postgresql lua-dbi-sqlite3 && \
